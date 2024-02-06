@@ -4,8 +4,20 @@
     width: 28vw;
 }
 
+.greenThick {
+    width: 15%;
+}
+
 .secondImage {
     display: none;
+}
+
+.successRegistrationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
 }
 
 .error {
@@ -96,10 +108,15 @@
     width: 100%;
 }
 
+.confirmationSubtitle {
+    align-self: center;
+    text-align: center;
+    padding: 10px;
+}
+
 .h1 {
     font-size: 30px;
     color: #e65624;
-    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
 }
