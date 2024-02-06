@@ -4,9 +4,11 @@ import styles from './Registration.module.css';
 
 const RegistrationComponent = () => {
     const [username, setUsername] = useState('');
+    const [usernameUsed, setUsernameUsed] = useState(false);
     const [age, setAge] = useState('');
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
+    const [emailUsed, setEmailUsed] = useState(false);
     const [country, setCountry] = useState('');
     const [enableRegister, setEnableRegister] = useState(false);
 
@@ -16,6 +18,7 @@ const RegistrationComponent = () => {
         switch (name) {
             case 'username':
                 setUsername(value);
+                setUsernameUsed(false);
                 break;
             case 'age':
                 setAge(value);
@@ -25,6 +28,7 @@ const RegistrationComponent = () => {
                 break;
             case 'email':
                 setEmail(value);
+                setEmailUsed(false);
                 break;
             case 'country':
                 setCountry(value);
@@ -33,15 +37,19 @@ const RegistrationComponent = () => {
                 break;
         }
 
+        console.log(username, age, fullName, email, country)
+
         if (username && age && fullName && email && country && email.includes('@') && email.includes('.')) {
             setEnableRegister(true);
+        } else {
+            setEnableRegister(false);
         }
 
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/accounts', {
+        axios.post('http://localhost:3001/api/accounts/', {
             username,
             age,
             fullName,
@@ -49,10 +57,24 @@ const RegistrationComponent = () => {
             country,
         })
             .then((response) => {
-                response.status === 201 ? window.location.replace('https://deli.com.br/pt-br/') : alert('Error al crear la cuenta');
+                console.log(response)
+                if (response.status === 201) {
+                    alert('Usuario creado satisfactoriamente');
+                    window.location.replace('https://deli.com.br/pt-br/')
+                } else {
+                    alert('Error al crear usuario');
+                }
             })
             .catch((error) => {
-                console.log(error);
+                if (error.response.status === 409 && error.response.data.error === 'Email already in use') {
+                    setEnableRegister(false);
+                    setEmailUsed(true);
+                } else if (error.response.status === 409 && error.response.data.error === 'Username already in use') {
+                    setEnableRegister(false);
+                    setUsernameUsed(true);
+                } else {
+                    alert('Error al crear usuario');
+                }
             });
     };
 
@@ -70,6 +92,7 @@ const RegistrationComponent = () => {
                 <div className={styles.formContainer}>
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <label className={styles.inputContainer}>
+                            {emailUsed ? <p className={styles.error}>Email no disponible</p> : null}
                             <input className={styles.input} placeholder='Email' type="text" name='email' value={email} onChange={handleRegisterFieldsChange} />
                         </label>
                         <br />
@@ -82,6 +105,7 @@ const RegistrationComponent = () => {
                         </label>
                         <br />
                         <label className={styles.inputContainer}>
+                            {usernameUsed ? <p className={styles.error}>Nomre de usuario no disponible</p> : null}
                             <input className={styles.input} placeholder='Nombre de usuario' type="text" name='username' value={username} onChange={handleRegisterFieldsChange} />
                         </label>
                         <br />

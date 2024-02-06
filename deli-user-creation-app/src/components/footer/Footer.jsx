@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import image from '../../assets/images/Sin deli logoç.png';
+import image from '../../assets/images/output-onlinepngtools (1).png';
 
 const Footer = () => {
     return (
@@ -10,7 +10,7 @@ const Footer = () => {
                     <img className={styles.image} src={image} alt="Deli Logo" />
                 </div>
                 <div className={styles.footerLeft}>
-                    <p>si necesitas ayuda no dudes en dirigirte a nuestra área de soporte o contactarnos a través del chat de sistema.</p>
+                    <p>si necesitas ayuda no dudes en dirigirte a nuestra área de soporte o contactarnos a través del <b>chat de sistema.</b></p>
                 </div>
             </div>
             <div className={styles.footerRight}>

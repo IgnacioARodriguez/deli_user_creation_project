@@ -1,6 +1,7 @@
-from fastapi import FastAPI
 import uvicorn
+from fastapi import FastAPI
 from routers.accounts_router import router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="Deli Api User Creation",
@@ -14,6 +15,15 @@ app = FastAPI(
         {"url": "http://localhost:3001", "description": "LOCAL DEV SERVER"},
     ],
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to allow requests from your frontend URL
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
 
 app.include_router(router)
 
