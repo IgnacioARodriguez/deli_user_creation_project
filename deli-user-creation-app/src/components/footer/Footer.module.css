@@ -1,0 +1,28 @@
+.footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(234, 234, 234);
+}
+
+.logoTextContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+}
+
+.image {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.footerLeft {
+    font-size: 10px;
+    text-align: center;
+}
+
+.footerRight {
+    font-size: 10px;
+}

@@ -1,19 +1,13 @@
 import React from 'react';
-import backgroundImage from '../../assets/images/2722306520.png';
+import backgroundImage from '../../assets/images/white-deli-logo.png';
+import styles from './Header.module.css';
 
 const Header = () => {
     return (
-        <header style={styles.header} />
+        <div className={styles.headerContainer}>
+            <img className={styles.image} src={backgroundImage} alt="Deli Logo" />
+        </div>
     );
-};
-
-const styles = {
-    header: {
-        background: `url(${backgroundImage}) center/cover no-repeat`,
-        backgroundColor: '#e65624',
-        height: '50px',
-        backgroundSize: '350px 350px',
-    },
 };
 
 export default Header;

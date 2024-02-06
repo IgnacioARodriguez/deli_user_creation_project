@@ -13,18 +13,7 @@ const RegistrationComponent = () => {
     const handleRegisterFieldsChange = (e) => {
         const {name, value} = e.target;
 
-        if (username && 
-            age && 
-            fullName && 
-            email && 
-            country && 
-            email.includes('@') && 
-            email.includes('.')
-        ){
-            setEnableRegister(true);
-        }
-
-        console.log('hola')
+        console.log(username, age, fullName, email, country, enableRegister)
 
         switch (name) {
             case 'username':
@@ -45,11 +34,15 @@ const RegistrationComponent = () => {
             default:
                 break;
         }
+
+        if (username && age && fullName && email && country && email.includes('@') && email.includes('.')) {
+            setEnableRegister(true);
+        }
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // TODO: Handle registration logic
         axios.post('http://localhost:3001/accounts', {
             username,
             age,
@@ -58,7 +51,7 @@ const RegistrationComponent = () => {
             country,
         })
             .then((response) => {
-                console.log(response);
+                response.status === 201 ? window.location.replace('https://deli.com.br/pt-br/') : alert('Error al crear la cuenta');
             })
             .catch((error) => {
                 console.log(error);
@@ -67,6 +60,9 @@ const RegistrationComponent = () => {
 
     return (
         <div className={styles.container}>
+            <div className={styles.secondImageContainer}>
+                <img className={styles.secondImage} src="https://i.pinimg.com/564x/2f/7f/54/2f7f54ade1adecb2dcc5943bac20cad8.jpg" alt="Deli Red Social" />
+            </div>
             <div className={styles.imageContainer}>
                 <img className={styles.mainImage} src="https://i.pinimg.com/564x/f8/ce/5b/f8ce5b5de67cd7a2ba8c8f9b887a98ea.jpg" alt="Deli Red Social" />
             </div>
@@ -95,100 +91,12 @@ const RegistrationComponent = () => {
                             <input className={styles.input} placeholder='País' type="text" name='country' value={country} onChange={handleRegisterFieldsChange} />
                         </label>
                         <br />
-                        <button className={styles.button} type="submit" disabled={!enableRegister}>Registrarse</button>
+                        <button className={styles.button} type="submit" disabled={!enableRegister} style={{backgroundColor: enableRegister ? '#e65624' : 'gray'}}>Registrarse</button>
                     </form>
                 </div>
             </div>
         </div>
     );
 };
-
-// const styles = {
-//     imageContainer: {
-//         display: 'flex',
-//         justifyContent: 'center',
-//         border: '1px solid black',
-//         padding: '10px',
-//     },  
-//     '@media (max-width: 768px)': {
-//         imageContainer: {
-//             display: 'none',
-//         },
-//     },
-//     mainImage: {
-//         // width: '100%',
-//         // height: '100%',
-//     },
-//     '@media (max-width: 768px)': {
-//         mainImage: {
-//             display: 'none',
-//         },
-//     },
-//     container: {
-//         display: 'flex',
-//         height: '90vh',
-//         width: '100%',
-//     },
-//     registerContainer: {
-//         textAlign: 'center',
-//         border: '3px solid black',
-//         width: '100%',
-//         display: 'flex',
-//         flexDirection: 'column',
-//         justifyContent: 'center',
-//     },
-//     input: {
-//         display: 'flex',
-//         justifyContent: 'center',
-//         border: '1px solid black',
-//         borderRadius: '3px',
-//         borderColor: 'gray',
-//         height: '30px',
-//         width: '400%',
-//         maxWidth: '300px',
-//         outline: 'none',
-//         fontWeight: 'bold',
-//         paddingLeft: '10px',
-//     },
-//     inputContainer: {
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//         width: '100%',
-//     },
-//     h1: {
-//         fontSize: '30px',
-//         color: '#e65624',
-//         border: '1px solid black',
-//         display: 'flex',
-//         justifyContent: 'center',
-//     },
-//     h3: {
-//         color: 'gray',
-//         fontSize: '13px',
-//         fontWeight: 'bold',
-//         marginBottom: '30px',
-//     },
-//     formContainer: {
-//         display: 'flex',
-//         justifyContent: 'center',
-//         border: '1px solid black',
-//     },
-//     form: {
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//         width: '15%',
-//     },
-//     button: {
-//         marginTop: '10px',
-//         padding: '10px',
-//         backgroundColor: '#e65624',
-//         color: '#fff',
-//         cursor: 'pointer',
-//         borderRadius: '5px',
-//     },
-
-// };
 
 export default RegistrationComponent;
