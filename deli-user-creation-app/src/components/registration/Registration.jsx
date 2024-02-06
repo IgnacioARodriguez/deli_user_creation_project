@@ -13,8 +13,6 @@ const RegistrationComponent = () => {
     const handleRegisterFieldsChange = (e) => {
         const {name, value} = e.target;
 
-        console.log(username, age, fullName, email, country, enableRegister)
-
         switch (name) {
             case 'username':
                 setUsername(value);

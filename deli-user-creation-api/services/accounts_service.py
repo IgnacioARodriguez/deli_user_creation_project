@@ -1,8 +1,8 @@
 import json
-from repositories.accounts_repository import create_account as create_account_repository
+from repositories.accounts_repository import create_account as create_account_repository, get_account as get_account_repository
 from utils.email_sender import confirmation_email_sender
 
-async def create_account(body: dict) -> dict:
+async def create_account(body: dict):
     try:
         account_data = {
             "username": body["username"],
@@ -12,12 +12,34 @@ async def create_account(body: dict) -> dict:
             "country": body["country"],
         }
 
-        print('Sending confirmation email...')
-        confirmation_email_sender()
+        account_exists = await get_account(account_data["username"], account_data["email"])
+
+        if account_exists == 'Email already in use':
+            return {'error': 'Email already in use'}
+        elif account_exists == 'Username already in use':
+            return {'error': 'Username already in use'}
 
         account_created = await create_account_repository(account_data)
 
+        print('Sending confirmation email...')
+        confirmation_email_sender(account_data["username"])
+
         return account_created
+
+    except Exception as e:
+        raise e
+
+
+async def get_account(username: str, email: str) -> str:
+    try:
+        account_data = {
+            "username": username,
+            "email": email
+        }
+
+        account = await get_account_repository(account_data)
+
+        return account
 
     except Exception as e:
         raise e
