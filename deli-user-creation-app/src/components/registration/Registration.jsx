@@ -13,6 +13,7 @@ const RegistrationComponent = () => {
     const [emailUsed, setEmailUsed] = useState(false);
     const [country, setCountry] = useState('');
     const [enableRegister, setEnableRegister] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleRegisterFieldsChange = (e) => {
         const {name, value} = e.target;
@@ -39,8 +40,6 @@ const RegistrationComponent = () => {
                 break;
         }
 
-        console.log(username, age, fullName, email, country)
-
         if (username && age && fullName && email && country && email.includes('@') && email.includes('.')) {
             setEnableRegister(true);
         } else {
@@ -51,6 +50,7 @@ const RegistrationComponent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
         axios.post('https://deli-user-creation-project.onrender.com/api/accounts/', {
             username,
             age,
@@ -58,25 +58,26 @@ const RegistrationComponent = () => {
             email,
             country,
         })
-            .then((response) => {
-                console.log(response)
-                if (response.status === 201) {
-                    setSucessfulRegistration(true);
-                } else {
-                    alert('Error al crear usuario');
-                }
-            })
-            .catch((error) => {
-                if (error.response.status === 409 && error.response.data.error === 'Email already in use') {
-                    setEnableRegister(false);
-                    setEmailUsed(true);
-                } else if (error.response.status === 409 && error.response.data.error === 'Username already in use') {
-                    setEnableRegister(false);
-                    setUsernameUsed(true);
-                } else {
-                    alert('Error al crear usuario');
-                }
-            });
+        .then((response) => {
+            if (response.status === 201) {
+                setLoading(false);
+                setSucessfulRegistration(true);
+            } else {
+                alert('Error al crear usuario');
+            }
+        })
+        .catch((error) => {
+            setLoading(false);
+            if (error.response.status === 409 && error.response.data.error === 'Email already in use') {
+                setEnableRegister(false);
+                setEmailUsed(true);
+            } else if (error.response.status === 409 && error.response.data.error === 'Username already in use') {
+                setEnableRegister(false);
+                setUsernameUsed(true);
+            } else {
+                alert('Error al crear usuario');
+            }
+        });
     };
 
     return (
@@ -116,7 +117,9 @@ const RegistrationComponent = () => {
                                     <input className={styles.input} placeholder='País' type="text" name='country' value={country} onChange={handleRegisterFieldsChange} />
                                 </label>
                                 <br />
-                                <button className={styles.button} type="submit" disabled={!enableRegister} style={{backgroundColor: enableRegister ? '#e65624' : 'gray'}}>Registrarse</button>
+                                <button className={styles.button} type="submit" disabled={!enableRegister || loading} style={{backgroundColor: enableRegister ? '#e65624' : 'gray'}}>
+                                    {loading ? 'Cargando...' : 'Registrarse'}
+                                </button>
                             </form>
                         </div>
                     </div>
