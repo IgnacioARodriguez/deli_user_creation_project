@@ -15,5 +15,26 @@ DELI, a social network, aims to enhance the user experience and increase registr
 
 ## Getting Started:
 1. Clone the repository.
-2. Follow the setup instructions in the project's README to run the application locally.
-3. Explore the user creation interface and backend logic.
+
+### Setting up React App:
+1. Navigate to the frontend directory:
+  - cd .\deli-user-creation-app\
+2. Install dependencies using npm:
+  - npm install
+3. Start the React development server:
+  -npm start
+Your React app should now be running at http://localhost:3000.
+
+### Setting up FastAPI API:
+1. Navigate to the backend directory:
+  - cd .\deli-user-creation-api\
+2. Set up a virtual environment:
+  -python3 -m venv .venv
+3. Activate the virtual environment:
+    - .venv\Scripts\activate
+4. Install dependencies using pip:
+  - pip install -r requirements.txt
+5. Add file .env to root directory of api project and update its values like in .env.example file.
+6. Start the FastAPI server:
+  - python main.py
+Your FastAPI API should now be running at http://localhost:3001.
