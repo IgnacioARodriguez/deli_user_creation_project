@@ -5,6 +5,8 @@ import os
 
 load_dotenv()
 
+print('ACAA MONGO URL', type(os.getenv("MONGO_DB_URL")), os.getenv("MONGO_DB_URL"))
+
 # Configuración de MongoDB Atlas
 MONGO_DB_URL = "mongodb+srv://deli-user-creation:deli123@deli-cluster.hufqvre.mongodb.net/?retryWrites=true&w=majority"
 
