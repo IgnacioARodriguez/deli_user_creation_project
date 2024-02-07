@@ -2,7 +2,7 @@
 
 DELI, a social network, aims to enhance the user experience and increase registrations. This repository presents the solution to the challenge, involving the creation of a user-friendly web interface using the React framework. Additionally, a Python-based backend, implemented with FastAPI, handles user creation and confirmation emails.
 
-DELI user creation web client URL: https://vercel.com/ignacioarodriguez/deli-user-creation-project
+DELI user creation web client URL: https://deli-user-creation-project.vercel.app/
 
 ## Features:
 - **User Creation Interface:** A user-friendly web interface for creating new accounts.
