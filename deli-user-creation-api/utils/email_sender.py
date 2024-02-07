@@ -27,7 +27,7 @@ def confirmation_email_sender(username: str, email: str) -> Response | None:
 		response = requests.post(
 			f"https://api.mailgun.net/v3/{mailgun_domain}/messages",
 			auth=("api", mailgun_api_key),
-			data={"from": f"Excited User <mailgun@{mailgun_domain}>",
+			data={"from": f"DELI <mailgun@{mailgun_domain}>",
 				"to": [email],
 				"subject": "Registration Confirmed Deli",
 				"html": html_template})
