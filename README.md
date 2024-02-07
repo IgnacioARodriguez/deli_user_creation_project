@@ -4,6 +4,10 @@ DELI, a social network, aims to enhance the user experience and increase registr
 
 DELI user creation web client URL: https://deli-user-creation-project.vercel.app/
 
+
+### IMPORTANT INFORMATION:
+- Every email account that wants to receive the confirmation email has to be registered in Mailgun platform before registering the account with that email.
+
 ## Features:
 - **User Creation Interface:** A user-friendly web interface for creating new accounts.
 - **Backend Logic:** Manages user creation, handles email confirmation and store account information in database.
@@ -47,6 +51,3 @@ Your React app should now be running at http://localhost:3000.
 7. Start the FastAPI server:
   - python main.py
 Your FastAPI API should now be running at http://localhost:3001.
-
-## Special Considearations:
-- Every email account that wants to receive the confirmation email has to be registered in Mailgun platform.
