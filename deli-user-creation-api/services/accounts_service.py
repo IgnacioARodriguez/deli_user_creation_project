@@ -22,7 +22,7 @@ async def create_account(body: dict):
         account_created = await create_account_repository(account_data)
 
         print('Sending confirmation email...')
-        confirmation_email_sender(account_data["username"])
+        confirmation_email_sender(account_data["username"], account_data["email"])
 
         return account_created
 

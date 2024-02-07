@@ -1,12 +1,15 @@
 import requests
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def read_html_template(file_path):
     with open(file_path, "r") as file:
         return file.read()
 
-def confirmation_email_sender(username: str,):
+def confirmation_email_sender(username: str, email: str):
 	script_dir = os.path.dirname(os.path.realpath(__file__))
 	html_template_path = os.path.join(script_dir, "confirmation_email_template.html")
 	html_template = read_html_template(html_template_path)
@@ -15,11 +18,19 @@ def confirmation_email_sender(username: str,):
 		return None
 
 	html_template = html_template.replace("username", username)
+      
+	mailgun_domain = os.getenv("MAILGUN_DOMAIN")
+	mailgun_api_key = os.getenv("MAILGUN_API_KEY")
 
-	return requests.post(
-		"https://api.mailgun.net/v3/sandbox4f0b8553d48a4af3a4e25af6e56c79ba.mailgun.org/messages",
-		auth=("api", "6f312c280febfdcc73f8e7e93ca48b0e-8c90f339-ccc07b54"),
-		data={"from": "Excited User <mailgun@sandbox4f0b8553d48a4af3a4e25af6e56c79ba.mailgun.org>",
+	print(mailgun_domain)
+	print(mailgun_api_key)
+
+	response = requests.post(
+		f"https://api.mailgun.net/v3/{mailgun_domain}/messages",
+		auth=("api", mailgun_api_key),
+		data={"from": f"Excited User <mailgun@{mailgun_domain}>",
 			"to": ["igrodriguez.ar@gmail.com"],
-			"subject": "Hello",
+			"subject": "Registration Confirmed Deli",
 			"html": html_template})
+      
+	return response
