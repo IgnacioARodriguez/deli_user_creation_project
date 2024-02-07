@@ -1,6 +1,6 @@
 import requests
-import os
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
@@ -21,9 +21,6 @@ def confirmation_email_sender(username: str, email: str):
       
 	mailgun_domain = os.getenv("MAILGUN_DOMAIN")
 	mailgun_api_key = os.getenv("MAILGUN_API_KEY")
-
-	print(mailgun_domain)
-	print(mailgun_api_key)
 
 	response = requests.post(
 		f"https://api.mailgun.net/v3/{mailgun_domain}/messages",
