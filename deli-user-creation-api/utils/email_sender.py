@@ -22,14 +22,15 @@ def confirmation_email_sender(username: str, email: str):
 	mailgun_domain = os.getenv("MAILGUN_DOMAIN").strip('"')
 	mailgun_api_key = os.getenv("MAILGUN_API_KEY").strip('"')
 
-	response = requests.post(
-		f"https://api.mailgun.net/v3/{mailgun_domain}/messages",
-		auth=("api", mailgun_api_key),
-		data={"from": f"Excited User <mailgun@{mailgun_domain}>",
-			"to": ["igrodriguez.ar@gmail.com"],
-			"subject": "Registration Confirmed Deli",
-			"html": html_template})
-      
-	print('MAIL RESPONSE', response)
+	try:
+		response = requests.post(
+			f"https://api.mailgun.net/v3/{mailgun_domain}/messages",
+			auth=("api", mailgun_api_key),
+			data={"from": f"Excited User <mailgun@{mailgun_domain}>",
+				"to": [email],
+				"subject": "Registration Confirmed Deli",
+				"html": html_template})
+	except Exception as e:
+		raise Exception(f'Error sending email: {e}')
       
 	return response

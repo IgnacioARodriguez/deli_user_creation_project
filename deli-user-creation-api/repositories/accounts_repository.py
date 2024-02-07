@@ -10,7 +10,7 @@ async def create_account(account_data: dict) -> dict:
         return account_data
 
     except Exception as e:
-        raise e
+        raise Exception(f'Error creating account: {e}')
     
 
 async def get_account(account_data: dict) -> str:
@@ -27,4 +27,4 @@ async def get_account(account_data: dict) -> str:
             return 'Account not found'
 
     except Exception as e:
-        raise e
+        raise Exception(f'Error getting account: {e}')

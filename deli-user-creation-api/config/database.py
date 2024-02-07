@@ -19,7 +19,7 @@ try:
     db: Database = client[MONGO_DB_NAME]
 
 except Exception as e:
-    raise e
+    raise Exception(f'Error connecting to database: {e}')
 
 def get_database() -> Database:
     if db is not None:
