@@ -51,7 +51,7 @@ const RegistrationComponent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/api/accounts/', {
+        axios.post('https://deli-user-creation-project.onrender.com/api/accounts/', {
             username,
             age,
             fullName,
