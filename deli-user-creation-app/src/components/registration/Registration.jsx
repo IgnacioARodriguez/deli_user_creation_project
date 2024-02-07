@@ -5,7 +5,7 @@ import greenTick from '../../assets/images/transparent-green-tick-green-circle-w
 
 const RegistrationComponent = () => {
     const [username, setUsername] = useState('');
-    const [sucessfulRegistration, setSucessfulRegistration] = useState(true);
+    const [sucessfulRegistration, setSucessfulRegistration] = useState(false);
     const [usernameUsed, setUsernameUsed] = useState(false);
     const [age, setAge] = useState('');
     const [fullName, setFullName] = useState('');
