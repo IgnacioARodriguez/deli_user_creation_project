@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 # Configuración de MongoDB Atlas
-MONGO_DB_URL = "mongodb+srv://deli-user-creation:<password>@deli-cluster.hufqvre.mongodb.net/?retryWrites=true&w=majority"
+MONGO_DB_URL = "mongodb+srv://deli-user-creation:deli123@deli-cluster.hufqvre.mongodb.net/?retryWrites=true&w=majority"
 
 MONGO_DB_NAME = "deli-db"
 

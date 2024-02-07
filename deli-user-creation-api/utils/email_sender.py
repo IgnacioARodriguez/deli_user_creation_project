@@ -33,4 +33,6 @@ def confirmation_email_sender(username: str, email: str):
 			"subject": "Registration Confirmed Deli",
 			"html": html_template})
       
+	print('MAIL RESPONSE', response)
+      
 	return response
