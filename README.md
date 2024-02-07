@@ -7,7 +7,7 @@ DELI user creation web client URL: https://deli-user-creation-project.vercel.app
 
 ### IMPORTANT INFORMATION:
 - Every email account that wants to receive the confirmation email has to be registered in Mailgun platform before registering the account with that email.
-- Email confirmation could be sent to Spam. Please when receiving, confirm that is not Spapm so Mailgun knows my account is not doing anything wrong.
+- Email confirmation could be sent to Spam. Please when receiving, confirm that is not Spam so Mailgun knows the account is not doing anything wrong.
 
 ## Features:
 - **User Creation Interface:** A user-friendly web interface for creating new accounts.
@@ -49,6 +49,7 @@ Your React app should now be running at http://localhost:3000.
   - pip install -r requirements.txt
 5. Add file .env to root directory of api project and update its values like in .env.example file.
 6. User must have a Mongo DB Atlas account with <MONGO_DB_URL>, <MONGO_DB_USERNAME>, <MONGO_DB_PASSWORD> and update its values in the <MONGO_DB_URL> and in the .env file.
-7. Start the FastAPI server:
+7. User must have a Mailgun account with <MAILGUN_API_KEY> and <MAILGUN_DOMAIN> and update its values in the .env file.
+8. Start the FastAPI server:
   - python main.py
 Your FastAPI API should now be running at http://localhost:3001.
