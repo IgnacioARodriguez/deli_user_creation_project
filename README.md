@@ -8,6 +8,7 @@ DELI user creation web client URL: https://deli-user-creation-project.vercel.app
 ### IMPORTANT INFORMATION:
 - Every email account that wants to receive the confirmation email has to be registered in Mailgun platform before registering the account with that email.
 - Email confirmation could be sent to Spam. Please when receiving, confirm that is not Spam so Mailgun knows the account is not doing anything wrong.
+- If the hosted backend is inactive for a while, the free tier version of Render.com shut it down. It could take a while to register the account in the Frontend if that is the case.
 
 ## Features:
 - **User Creation Interface:** A user-friendly web interface for creating new accounts.
