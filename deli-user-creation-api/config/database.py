@@ -1,9 +1,14 @@
 from pymongo import MongoClient
 from pymongo.database import Database
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Configuración de MongoDB Atlas
-MONGO_DB_URL = "mongodb+srv://deli-user-creation-db-username:deliprojectapi@deli-user-creation-db.uiawp4n.mongodb.net/?retryWrites=true&w=majority"
-MONGO_DB_NAME = "deli-user-creation-db"
+MONGO_DB_URL = os.getenv("MONGO_DB_URL")
+
+MONGO_DB_NAME = os.getenv("MONGO_DB_NAME")
 
 # Conexión a la base de datos
 try:
