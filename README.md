@@ -7,6 +7,7 @@ DELI user creation web client URL: https://deli-user-creation-project.vercel.app
 
 ### IMPORTANT INFORMATION:
 - Every email account that wants to receive the confirmation email has to be registered in Mailgun platform before registering the account with that email.
+- Email confirmation could be sent to Spam. Please when receiving, confirm that is not Spapm so Mailgun knows my account is not doing anything wrong.
 
 ## Features:
 - **User Creation Interface:** A user-friendly web interface for creating new accounts.
