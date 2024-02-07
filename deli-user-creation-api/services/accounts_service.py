@@ -25,7 +25,7 @@ async def create_account(body: dict):
         return account_created
 
     except Exception as e:
-        raise e
+        raise Exception(f'Error creating account: {e}')
 
 
 async def get_account(username: str, email: str) -> str:
@@ -40,4 +40,4 @@ async def get_account(username: str, email: str) -> str:
         return account
 
     except Exception as e:
-        raise e
+        raise Exception(f'Error getting account: {e}')
