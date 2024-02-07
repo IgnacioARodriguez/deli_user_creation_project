@@ -11,7 +11,6 @@ async def create_account(body: dict):
             "email": body["email"],
             "country": body["country"],
         }
-
         account_exists = await get_account(account_data["username"], account_data["email"])
 
         if account_exists == 'Email already in use':
@@ -21,7 +20,6 @@ async def create_account(body: dict):
 
         account_created = await create_account_repository(account_data)
 
-        print('Sending confirmation email...')
         confirmation_email_sender(account_data["username"], account_data["email"])
 
         return account_created
