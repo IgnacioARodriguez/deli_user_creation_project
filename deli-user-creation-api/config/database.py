@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 print('ACAA MONGO URL', type(os.getenv("MONGO_DB_URL")), os.getenv("MONGO_DB_URL"))
-mongo_url = os.getenv("MONGO_DB_URL")
+mongo_url = os.getenv("MONGO_DB_URL").strip('"')
 
 # Configuración de MongoDB Atlas
 MONGO_DB_URL = mongo_url
