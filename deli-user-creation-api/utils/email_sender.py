@@ -19,13 +19,13 @@ def confirmation_email_sender(username: str, email: str):
 
 	html_template = html_template.replace("username", username)
       
-	mailgun_domain = os.getenv("MAILGUN_DOMAIN")
-	mailgun_api_key = os.getenv("MAILGUN_API_KEY")
+	mailgun_domain = os.getenv("MAILGUN_DOMAIN").strip('"')
+	mailgun_api_key = os.getenv("MAILGUN_API_KEY").strip('"')
 
 	response = requests.post(
-		"https://api.mailgun.net/v3/sandboxcfee8a226f4c46139a52ad41d02da14e.mailgun.org/messages",
-		auth=("api", "24d8ca9dfe425832e343dba43ec3808f-8c90f339-f08faa0e"),
-		data={"from": "Excited User <mailgun@sandboxcfee8a226f4c46139a52ad41d02da14e.mailgun.org>",
+		f"https://api.mailgun.net/v3/{mailgun_domain}/messages",
+		auth=("api", mailgun_api_key),
+		data={"from": f"Excited User <mailgun@{mailgun_domain}>",
 			"to": ["igrodriguez.ar@gmail.com"],
 			"subject": "Registration Confirmed Deli",
 			"html": html_template})

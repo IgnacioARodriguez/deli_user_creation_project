@@ -5,13 +5,13 @@ import os
 
 load_dotenv()
 
-print('ACAA MONGO URL', type(os.getenv("MONGO_DB_URL")), os.getenv("MONGO_DB_URL"))
-mongo_url = os.getenv("MONGO_DB_URL").strip('"')
+mongo_db_url = os.getenv("MONGO_DB_URL").strip('"')
+mongo_db_name = os.getenv("MONGO_DB_NAME").strip('"')
 
 # Configuración de MongoDB Atlas
-MONGO_DB_URL = mongo_url
+MONGO_DB_URL = mongo_db_url
 
-MONGO_DB_NAME = "deli-db"
+MONGO_DB_NAME = mongo_db_name
 
 # Conexión a la base de datos
 try:
