@@ -24,6 +24,7 @@ async def create_account(request: Request):
         )
 
     except Exception as e:
+        print(e)
         return JSONResponse(
             status_code=500,
             content='Internal server error'
